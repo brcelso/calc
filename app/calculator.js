@@ -1,5 +1,5 @@
 // components/Calculator.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './calculator.module.css';
 
 const Calculator = () => {
@@ -9,17 +9,57 @@ const Calculator = () => {
   const handleButtonClick = (value) => {
     if (value === '=') {
       try {
-        setResult(eval(input).toString());
+        const isValidExpression = /^[0-9+\-*/.()\s]+$/.test(input);
+        if (isValidExpression) {
+          setResult(eval(input).toString());
+        } else {
+          setResult('Erro: Expressão inválida');
+        }
       } catch (error) {
         setResult('Erro');
       }
     } else if (value === 'C') {
       setInput('');
       setResult('');
+    } else if (value === 'CE') {
+      setInput((prevInput) => prevInput.slice(0, -1)); // Remove the last character
     } else {
       setInput((prevInput) => prevInput + value);
     }
   };
+
+   const handleFormSubmit = (event) => {
+    event.preventDefault(); // Prevent form submission
+    handleButtonClick('=');
+  };
+
+  const handleKeyDown = (event) => {
+    const key = event.key;
+
+    if (key === 'Backspace') {
+      event.preventDefault(); // Prevent browser navigation on Backspace
+      handleButtonClick('CE');
+    } else if (key === 'Enter') {
+      event.preventDefault(); // Prevent form submission on Enter key
+      handleButtonClick('=');
+    } else {
+      const validKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '.', '='];
+
+      if (validKeys.includes(key)) {
+        event.preventDefault(); // Prevent default behavior for supported keys
+        handleButtonClick(key);
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []); // Empty dependency array means the effect runs once when the component mounts
+
 
   return (
     <div className={styles.calculator}>
@@ -41,6 +81,7 @@ const Calculator = () => {
       <button onClick={() => handleButtonClick('=')} className={styles.button}>=</button>
       <button onClick={() => handleButtonClick('+')} className={styles.button}>+</button>
       <button onClick={() => handleButtonClick('C')} className={styles.button}>C</button>
+      <button onClick={() => handleButtonClick('CE')} className={styles.button}>CE</button>
       
       {/* ... rest of the buttons ... */}
       <button onClick={() => handleButtonClick('=')} className={styles.resultButton}>
