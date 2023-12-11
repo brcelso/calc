@@ -26,15 +26,15 @@ const Calculator = () => {
       <input type="text" value={input} readOnly className={styles.input} />
       <button onClick={() => handleButtonClick('7')} className={styles.button}>7</button>
       <button onClick={() => handleButtonClick('8')} className={styles.button}>8</button>
-      <button onClick={() => handleButtonClick('7')} className={styles.button}>9</button>
-      <button onClick={() => handleButtonClick('8')} className={styles.button}>/</button>
-      <button onClick={() => handleButtonClick('7')} className={styles.button}>4</button>
-      <button onClick={() => handleButtonClick('8')} className={styles.button}>5</button>
-      <button onClick={() => handleButtonClick('7')} className={styles.button}>6</button>
-      <button onClick={() => handleButtonClick('8')} className={styles.button}>*</button>
-      <button onClick={() => handleButtonClick('7')} className={styles.button}>1</button>
-      <button onClick={() => handleButtonClick('8')} className={styles.button}>2</button>
-      <button onClick={() => handleButtonClick('8')} className={styles.button}>3</button>
+      <button onClick={() => handleButtonClick('9')} className={styles.button}>9</button>
+      <button onClick={() => handleButtonClick('/')} className={styles.button}>/</button>
+      <button onClick={() => handleButtonClick('4')} className={styles.button}>4</button>
+      <button onClick={() => handleButtonClick('5')} className={styles.button}>5</button>
+      <button onClick={() => handleButtonClick('6')} className={styles.button}>6</button>
+      <button onClick={() => handleButtonClick('*')} className={styles.button}>*</button>
+      <button onClick={() => handleButtonClick('1')} className={styles.button}>1</button>
+      <button onClick={() => handleButtonClick('2')} className={styles.button}>2</button>
+      <button onClick={() => handleButtonClick('3')} className={styles.button}>3</button>
       <button onClick={() => handleButtonClick('-')} className={styles.button}>-</button>
       <button onClick={() => handleButtonClick('0')} className={styles.button}>0</button>
       <button onClick={() => handleButtonClick('.')} className={styles.button}>.</button>
