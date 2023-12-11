@@ -43,7 +43,9 @@ const Calculator = () => {
       <button onClick={() => handleButtonClick('C')} className={styles.button}>C</button>
       
       {/* ... rest of the buttons ... */}
-      <p className={styles.result}>Resultado: {result}</p>
+      <button onClick={() => handleButtonClick('=')} className={styles.resultButton}>
+          Resultado: {result}
+        </button>
     </div>
   );
 };
